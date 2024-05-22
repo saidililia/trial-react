@@ -1,0 +1,64 @@
+.nav aside{
+   float: left;
+   height: 100vh;
+   /* background-color: rgb(240, 255, 241); */
+}
+
+.nav .logo{
+    margin-left: 30px;
+    margin-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+.nav .logo p{
+    position: relative;
+    top: 10px;
+    font-size: larger;
+    left: 5px;
+    color: rgb(37, 150, 37);
+}
+
+.nav p{
+    display: inline;
+    margin: 0px 0px;
+    font-size: x-large;
+    font-weight: bolder;
+    
+}
+.nav span{
+    color: #3c3a3a;
+    font-weight: bold;
+    font-size: large;
+    
+}
+
+.nav ul{
+    
+    list-style-type: none;
+    padding: 0;
+    
+}
+
+.nav li {
+    text-decoration:dotted;
+    padding: 30px 60px 30px 30px;
+   
+}
+
+.nav li:hover{
+    background-color: rgb(137, 247, 143);
+    color: white;
+}
+
+.nav li:hover span {
+    color: white;
+}
+
+.nav a{
+    text-decoration: none;    
+}
+
+.nav svg{
+    color: rgb(37, 150, 37); /* Change the color to red when hovering over the icon */
+  }

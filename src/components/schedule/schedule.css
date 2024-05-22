@@ -1,0 +1,88 @@
+
+
+.schedule .header{
+    text-align: left;
+    padding: 40px 10px 10px 10px;
+    display: inline-block;
+    color: #3c3a3a;
+    display: block;
+    
+}
+.schedule .circus{
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  height: 100vh
+}
+
+.add-button {
+    position: fixed;
+    bottom: 40px; /* Adjust as needed */
+    right: 40px; /* Adjust as needed */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #505152; /* Adjust the color as needed */
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .add-button:hover {
+    background-color: #0056b3; /* Adjust the color as needed */
+  }
+.schedule .element{
+  padding: 10px;
+  margin: 10px 15px;
+  display: inline-block;
+  border-radius: 4px;
+  vertical-align: top; /* Align boxes at the top */
+}
+
+.schedule .element .Butt{
+  position: relative;
+  bottom: 20px;
+  left: 18px;
+  border-radius: 45%;
+}
+.schedule .delete{
+  float: right;
+  border: none;
+}
+
+.schedule .element p{
+  font-size: medium;
+  font-weight: bold;
+  display: inline-block;
+  color: #505152;
+}
+
+.schedule .element button{
+  float: right;
+}
+
+.schedule .container{
+  border-radius: 4px;
+  background-color: #e7e7e7;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.schedule .hours .added .hour{
+  display: inline-block;
+}
+.schedule .hours .added p{
+  font-weight: normal;
+}
+
+.schedule .hours .added .ant-select{
+  float: right;
+}
+
+.schedule .element .submit{
+  display: flex;
+  justify-content: center;
+}

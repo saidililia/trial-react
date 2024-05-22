@@ -1,0 +1,155 @@
+
+
+.request .header{
+    text-align: left;
+    padding: 40px 10px 10px 10px;
+    display: block;
+}
+
+.request .header2{
+    display: block;
+}
+
+.request .cards{
+    padding: 10px;
+    display: block;
+    
+}
+.request .container {
+    display: flex;
+    flex-direction: column;
+}
+  
+
+  
+.request .card {
+    
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    width: 100%; /* Make cards 100% width of their parent container */
+    
+    
+    
+  }
+
+.request .title p{
+    font-size: medium;
+    font-weight: 600;
+    display: inline;
+    padding: 10px 10px;
+    
+}
+
+/* .request .title{
+    display: inline;
+    
+} */
+
+.request .both1{
+   
+    display: block;
+}
+.request .card{
+    position: relative; 
+    height: fit-content;
+    
+    margin-bottom: 10px;
+   
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.request .container{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f2f5;
+    height: fit-content;
+    width: 100%;
+
+}
+
+
+.request .message p{
+    padding: 5px 20px;
+}
+.request .both{
+    display: block;
+    margin: 10px  0px;
+    padding: 0px 10px;
+}
+.request .both p {
+    display: inline;
+}
+.request .status{
+    display: inline;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+
+.request .container .header2{
+    padding-left: 10px;
+}
+/* .request .container .header2 p{
+    display: block;
+} */
+
+
+.request .circus{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    height: 100vh
+}
+.request .Pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.request .Pagination button {
+    background-color: #f0f0f0;
+    color: #505050;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+  }
+  
+.request .Pagination .main:hover{
+    background-color: #a6dba5;
+  }
+
+.request .add{
+    display: inline-block;
+    position: relative;
+    left: 930px;
+    background-color: rgb(66, 108, 70);
+    
+  }
+
+.request .add:hover{
+    background-color: #5f875f;
+}
+
+.request .compose-message-button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 300px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    z-index: 1; /* Ensure it appears above other elements */
+}
+.request .container {
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Add this line */
+}

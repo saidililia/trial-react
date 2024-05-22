@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 100vh; /* Set height to 100vh to cover the entire viewport height */
+}
+
+.loginBox {
+  flex: 1; /* Let the login box grow to take up remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  padding: 40px;
+  border-radius: 5px;
+  background-color: #fff; /* White background color */
+  text-align: center;
+}
+
+.right-panel {
+  padding: 10px;
+  flex: 1; /* Let the right panel grow to take up remaining space */
+  background-color: #7fdd8c; /* Green background color */
+  display: flex;
+  align-items: center; /* Center content vertically */
+}
+
+.right-panel img {
+  display: block;
+  margin: auto;
+  max-width: 100%; /* Ensure the image doesn't exceed the width of its container */
+}
+.circus{
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  height: 100vh
+}
