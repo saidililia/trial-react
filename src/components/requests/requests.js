@@ -1,10 +1,8 @@
 import './requests.css';
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CircularProgress from '@mui/material/CircularProgress';
-import { faLocation } from '@fortawesome/free-solid-svg-icons';
-import { Select, TreeSelect, Button, Modal, Input, Alert } from 'antd';
-import { SendOutlined, CaretRightOutlined, MinusOutlined } from '@ant-design/icons';
+import { Select, TreeSelect, Button, Input, Alert } from 'antd';
+import { SendOutlined, MinusOutlined } from '@ant-design/icons';
 import { CiLocationOn } from "react-icons/ci";
 const treeData = [
   {
@@ -74,7 +72,7 @@ function Requests() {
   };
   useEffect(() => {
     fetchReports();
-  }, []);
+  });
 
   const fetchReports = async (value = treeValue) => {
     try {
@@ -134,18 +132,18 @@ const formatDate = (dateString) => {
   const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
   return formattedDate;
 };
-  const handleComposeMessage = () => {
-    // Handle compose message functionality
-  };
+  // const handleComposeMessage = () => {
+  //   // Handle compose message functionality
+  // };
 
   const handleCancelCompose = () => {
     setShowComposeButton(false);
   };
 
-  const handleConfirmCompose = () => {
-    setShowComposeButton(false);
-    // Add logic to send notification
-  };
+  // const handleConfirmCompose = () => {
+  //   setShowComposeButton(false);
+  //   // Add logic to send notification
+  // };
 
   const handleTreeSelect = async (value) => {
     setTreeValue(value);
@@ -264,7 +262,7 @@ const formatDate = (dateString) => {
                 Prev
               </button>
               {Array.from({ length: totalPages }, (_, index) => (
-                <button style={{ backgroundColor: currentPage == index + 1 ? "#a6dba5" : "" }} className="main" key={index} onClick={() => goToPage(index + 1)} disabled={currentPage === index + 1}>
+                <button style={{ backgroundColor: currentPage === index + 1 ? "#a6dba5" : "" }} className="main" key={index} onClick={() => goToPage(index + 1)} disabled={currentPage === index + 1}>
                   {index + 1}
                 </button>
               ))}

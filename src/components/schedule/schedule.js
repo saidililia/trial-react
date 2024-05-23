@@ -4,10 +4,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import EditIcon from '@mui/icons-material/Edit';
-import { Button, Select, TreeSelect } from 'antd';
-import { Avatar, Card } from 'antd';
-import { CloudOutlined, SettingOutlined, EditOutlined, EllipsisOutlined,  } from '@ant-design/icons';
+import { Button, Select} from 'antd';
+import { Card } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 const Hours = [
@@ -63,7 +62,7 @@ function Schedule() {
   // retreive inial dates
   useEffect(() => {
     fetchSchedule(headers);
-  }, []);
+  });
   const fetchSchedule = async (headers) => {
 
   const responseR = await fetch('/Recycable', {headers});

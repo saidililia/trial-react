@@ -7,7 +7,6 @@ import Requests from './components/requests/requests';
 import Login from './components/login/login';
 import Clients from "./components/clients/clients";
 import Payment from "./components/payment/payment";
-import { CloudOutlined } from '@ant-design/icons';
 import './App.css'
 import Auth from './components/auth';
 

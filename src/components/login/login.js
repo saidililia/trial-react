@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import { Input, Tooltip } from 'antd';
-import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import { Select, Button } from "antd";
 import './login.css';
 import wilayaOptions from './wilayaOptions'; // Import wilaya options

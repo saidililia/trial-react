@@ -7,7 +7,7 @@ import './payment.css';
 function Payment() {
     const location = useLocation();
     const { commune } = location.state || {};
-    const [responseMessage, setResponseMessage] = useState('');
+    // const [responseMessage, setResponseMessage] = useState('');
     const navigate = useNavigate();
 
     const handleClick = async (montant, duree) => {
@@ -25,7 +25,7 @@ function Payment() {
         console.log("print response message: ..........", response)
         const jsonData = await response.json();
         console.log("print jsonData message: ..........", jsonData.message)
-        setResponseMessage(jsonData.message);
+        // setResponseMessage(jsonData.message);
 
     if (jsonData.message === "success") {
       console.log(jsonData.message);

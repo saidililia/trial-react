@@ -3,12 +3,12 @@ import './dashboard.css';
 import { Button, Col, Layout, Row, Statistic, Collapse } from 'antd';
 import CountUp from 'react-countup';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { DownloadOutlined, PayCircleOutlined } from '@ant-design/icons';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar } from 'recharts';
-import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { PDFDownloadLink, Document, Page, Text, View} from '@react-pdf/renderer';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 const { Panel } = Collapse;
 
 const data = [
@@ -48,7 +48,7 @@ function Dashboard() {
         const token = localStorage.getItem('token')
         fetchReports(token);
         console.log("in dashboard use effects............")
-      }, []);
+      });
     
       const fetchReports = async (token) => {
         console.log("here is the dashboard token.......", token)

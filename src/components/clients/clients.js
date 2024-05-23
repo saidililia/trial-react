@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from '@mui/material/CircularProgress';
-import { Select, Button, Table, Input, Alert, message } from 'antd';
+import { Select, Button, Table, Input, Alert} from 'antd';
 import { UsergroupDeleteOutlined, EditOutlined, ArrowLeftOutlined, MinusOutlined } from '@ant-design/icons';
 import './clients.css';
 import { CiLocationOn } from "react-icons/ci";
-import { green } from "@mui/material/colors";
-import { useLocation } from 'react-router-dom';
 
 function Clients() {
-  const [state, setState] = useState("ordered");
+  // const [state, setState] = useState("ordered");
   const [selectedValue, setSelectedValue] = useState("GREEN");
   const [clients, setClients] = useState([]);
   const [allclients, setAllClients] = useState([]);
@@ -72,7 +70,7 @@ function Clients() {
         console.error('Error fetching data:', error);
         setLoading(false); // Set loading to false to handle error case
       });
-  }, []);
+  });
 
   const showTableFunc = async  () =>  {
     console.log('step1: start show table func ...........')
@@ -165,25 +163,25 @@ function Clients() {
     },
   ];
 
-  const onChange = (id) => {
-    fetch('/Clients/update', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({ id })
-    })
-      .then(response => {
-        if (response.ok) {
-          console.log(`Successfully updated client with id ${id}`);
-          // Reload the page after successful update
-          window.location.reload();
-        } else {
-          console.error(`Failed to update client with id ${id}`);
-          // Handle error
-        }
-      });
-  };
+  // const onChange = (id) => {
+  //   fetch('/Clients/update', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ id })
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         console.log(`Successfully updated client with id ${id}`);
+  //         // Reload the page after successful update
+  //         window.location.reload();
+  //       } else {
+  //         console.error(`Failed to update client with id ${id}`);
+  //         // Handle error
+  //       }
+  //     });
+  // };
 
   const onSearch = (value) => {
     console.log('search:', value);
