@@ -305,7 +305,7 @@ function Schedule() {
             </div>
             <div className="element">
             <Card
-            style={{ width: 300 }}
+            style={{ width: "calc(33.33% - 10px)"}}
             actions={[
             <EditOutlined key="edit" onClick={handleClick2}/>,
             ]}
@@ -363,7 +363,7 @@ function Schedule() {
 
             <div className="element">
             <Card
-            style={{ width: 300 }}
+            style={{ width: "calc(33.33% - 10px)" }}
             actions={[
             <EditOutlined key="edit" onClick={handleClick3}/>,
             ]}
