@@ -136,7 +136,7 @@ function Dashboard() {
                         </Col>
                     </Row>
 
-                    <Row gutter={[360, 26]} justify="start">
+                    <Row gutter={[440, 26]} justify="start">
                         <Col xs={24} sm={24} md={12} lg={12} xl={8}>
                             <div className="chart" style={{ width: "450px" }}>
                                 <h3>Monthly Data</h3>
