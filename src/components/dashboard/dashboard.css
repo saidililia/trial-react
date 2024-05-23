@@ -17,11 +17,8 @@
 
 .action-buttons {
   display: flex;
-  position: relative;
-  left: 870px;
+  gap: 10px; /* Adjust the gap between buttons */
 }
-
-
 
 .site-layout-content {
   background-color: #f0f2f5;
@@ -30,39 +27,46 @@
   border-radius: 10px;
 }
 
-.waste, .chart {
+.waste,
+.chart {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Add margin bottom for spacing */
 }
 
-.waste h3, .chart h3 {
+.waste h3,
+.chart h3 {
   margin-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {
   .header {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px; /* Adjust padding for smaller screens */
   }
 
   .logo {
-      margin-bottom: 20px;
+    margin-bottom: 10px; /* Adjust margin bottom for smaller screens */
   }
 
   .action-buttons {
-      margin-top: 20px;
+    margin-top: 10px; /* Adjust margin top for smaller screens */
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    align-items: flex-end; /* Align buttons to the right on smaller screens */
   }
 
-  .waste, .chart {
-      margin-bottom: 20px;
+  .waste,
+  .chart {
+    margin-bottom: 10px; /* Adjust margin bottom for smaller screens */
   }
 }
 
-.circus{
-  display: flex ;
+.circus {
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh
+  height: 100vh;
 }

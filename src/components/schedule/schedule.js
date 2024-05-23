@@ -242,7 +242,7 @@ function Schedule() {
           <div>
 
             <div className='element'
-            style={{ width: "calc(33.33% - 10px)" }}>
+            style={{ width: "calc(40% - 10px)" }}>
             <Card
             actions={[
             
@@ -303,7 +303,7 @@ function Schedule() {
               
               
             </div>
-            <div className="element" style={{ width: "calc(33.33% - 10px)"}}>
+            <div className="element" style={{ width: "calc(40% - 10px)"}}>
             <Card
             actions={[
             <EditOutlined key="edit" onClick={handleClick2}/>,
@@ -360,7 +360,7 @@ function Schedule() {
               </Card>   
             </div>
 
-            <div className="element" style={{ width: "calc(33.33% - 10px)" }}>
+            <div className="element" style={{ width: "calc(40% - 10px)" }}>
             <Card
             actions={[
             <EditOutlined key="edit" onClick={handleClick3}/>,
