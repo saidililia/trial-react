@@ -96,13 +96,13 @@ function Dashboard() {
             ) : (
                 <div className="content">
                 <Header className="header">
-                <div className="action-buttons" style={{float:"right"}}>
+                <div className="action-buttons" style={{}}>
                     <PDFDownloadLink document={<PdfDocument />} fileName="dashboard.pdf" style={{ textDecoration: 'none' }}>
                         <Button type="primary" shape="round" icon={<DownloadOutlined />} size="large" style={{ backgroundColor: "rgb(66, 108, 70)" }}>Download</Button>
                     </PDFDownloadLink>
                     <Button type="default" shape="round" icon={<PayCircleOutlined />} size="large" style={{ backgroundColor: "white", marginTop:"10px" }} onClick={handleTogglePaymentInfo}>Payment</Button>
                 </div>
-                <h2 style={{position:"relative", right:"980px", color:"gray"}}>{wilaya}, {commune}</h2>
+                <h2 style={{}}>{wilaya}, {commune}</h2>
             </Header>
             <Content className="content">
                 <div className="site-layout-content">

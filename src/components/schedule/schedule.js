@@ -233,10 +233,6 @@ function Schedule() {
   return (
     <div className="schedule">
 
-      {/* <div className="header">
-        <h1>Schedule</h1>
-      </div> */}
-
       <div className="container">
         {loading ? (
           <div className='circus'>
@@ -247,7 +243,7 @@ function Schedule() {
 
             <div className='element'>
             <Card
-            style={{ width: 300 }}
+            style={{ width: "calc(33.33% - 10px)" /* Adjust width to fit three cards with a small gap */ }}
             actions={[
             
             <EditOutlined key="edit" onClick={handleClick1}/>,
