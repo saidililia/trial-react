@@ -96,13 +96,14 @@ function Dashboard() {
             ) : (
                 <div className="content">
                 <Header className="header">
+                <h2 >{wilaya}, {commune}</h2>
                 <div className="action-buttons" style={{float:"left"}}>
                     <PDFDownloadLink document={<PdfDocument />} fileName="dashboard.pdf" style={{ textDecoration: 'none' }}>
                         <Button type="primary" shape="round" icon={<DownloadOutlined />} size="large" style={{ backgroundColor: "rgb(66, 108, 70)" }}>Download</Button>
                     </PDFDownloadLink>
                     <Button type="default" shape="round" icon={<PayCircleOutlined />} size="large" style={{ backgroundColor: "white", marginTop:"10px" }} onClick={handleTogglePaymentInfo}>Payment</Button>
                 </div>
-                <h2 >{wilaya}, {commune}</h2>
+                
             </Header>
             <Content className="content">
                 <div className="site-layout-content">
@@ -136,7 +137,7 @@ function Dashboard() {
                         </Col>
                     </Row>
 
-                    <Row gutter={[440, 26]} justify="start">
+                    <Row gutter={[480, 26]} justify="start">
                         <Col xs={24} sm={24} md={12} lg={12} xl={8}>
                             <div className="chart" style={{ width: "470px" }}>
                                 <h3>Monthly Data</h3>
