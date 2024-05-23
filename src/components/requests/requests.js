@@ -73,7 +73,7 @@ function Requests() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     fetchReports();
-  }, []);
+  }, [fetchReports]);
 
   const fetchReports = async (value = treeValue) => {
     try {
