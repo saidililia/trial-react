@@ -96,13 +96,13 @@ function Dashboard() {
             ) : (
                 <div className="content" style={{}}>
                 <Header className="header">
-                <div className="action-buttons" style={{}}>
+                <div className="action-buttons" style={{float:"left"}}>
                     <PDFDownloadLink document={<PdfDocument />} fileName="dashboard.pdf" style={{ textDecoration: 'none' }}>
                         <Button type="primary" shape="round" icon={<DownloadOutlined />} size="large" style={{ backgroundColor: "rgb(66, 108, 70)" }}>Download</Button>
                     </PDFDownloadLink>
                     <Button type="default" shape="round" icon={<PayCircleOutlined />} size="large" style={{ backgroundColor: "white", marginTop:"10px" }} onClick={handleTogglePaymentInfo}>Payment</Button>
                 </div>
-                <h2 style={{float:"left"}}>{wilaya}, {commune}</h2>
+                <h2 >{wilaya}, {commune}</h2>
             </Header>
             <Content className="content">
                 <div className="site-layout-content">
@@ -138,9 +138,9 @@ function Dashboard() {
 
                     <Row gutter={[580, 26]} justify="start">
                         <Col xs={24} sm={24} md={12} lg={12} xl={8}>
-                            <div className="chart" style={{ width: "400px" }}>
+                            <div className="chart" style={{ width: "450px" }}>
                                 <h3>Monthly Data</h3>
-                                <LineChart width={350} height={200} data={data}>
+                                <LineChart width={400} height={200} data={data}>
                                     <XAxis dataKey="name" />
                                     <YAxis />
                                     <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
@@ -152,9 +152,9 @@ function Dashboard() {
                             </div>
                         </Col>
                         <Col xs={24} sm={24} md={12} lg={12} xl={8}>
-                            <div className="chart" style={{ width: "400px" }}>
+                            <div className="chart" style={{ width: "450px" }}>
                                 <h3>Bar Chart</h3>
-                                <BarChart width={350} height={200} data={barChartData}>
+                                <BarChart width={400} height={200} data={barChartData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />
