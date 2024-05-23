@@ -167,7 +167,7 @@ function Schedule() {
   
   const handleSubmitR = () =>{
     console.log(datesR)
-    fetch('/update-Recycable', {
+    fetch('https://saidililia.pythonanywhere.com/update-Recycable', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -189,7 +189,7 @@ function Schedule() {
   }
 
   const handleSubmitB = () =>{
-    fetch('/update-Burnable', {
+    fetch('https://saidililia.pythonanywhere.com/update-Burnable', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -210,7 +210,7 @@ function Schedule() {
     });
   }
   const handleSubmitN = () =>{
-    fetch('/update-NBurnable', {
+    fetch('https://saidililia.pythonanywhere.com/update-NBurnable', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
