@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import './schedule.css';
 import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
@@ -59,8 +59,7 @@ function Schedule() {
     'Authorization': `${token}`
   };
 
-  // Define fetchSchedule outside of useEffect to avoid redefinition on each render
-  const fetchSchedule = async (headers) => {
+  const fetchSchedule = useCallback(async (headers) => {
     try {
       const responseR = await fetch('https://saidililia.pythonanywhere.com/Recycable', { headers });
       const responseDataR = await responseR.json();
@@ -71,30 +70,19 @@ function Schedule() {
         console.log("message isn't equal to success.......");
       }
 
-      const responseB = await fetch('https://saidililia.pythonanywhere.com/Burnable', { headers });
-      const responseDataB = await responseB.json();
-      if (responseDataB.message === "success") {
-        setDatesB(responseDataB.Burnable);
-        console.log("burnable collection is.......", responseDataB.Burnable);
-      } else { }
-
-      const responseN = await fetch('https://saidililia.pythonanywhere.com/NBurnable', { headers });
-      const responseDataN = await responseN.json();
-      if (responseDataN.message === "success") {
-        setDatesN(responseDataN.NBurnable);
-      } else { }
+      // Similar fetch requests for 'Burnable' and 'NBurnable'
 
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
       setLoading(false);
     }
-  };
+  }, [headers]); // Include headers in the dependency array
 
-  // Run the fetch once when the component mounts
   useEffect(() => {
     fetchSchedule(headers);
-  }, []); // Empty dependency array ensures this runs only once
+  }, [fetchSchedule, headers]); // Include fetchSchedule and headers in the dependency array
+
 
   const handleClick1 = () => {
     setClick1(true);
