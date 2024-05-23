@@ -71,6 +71,7 @@ function Requests() {
     'Authorization': `${token}`
   };
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     fetchReports();
   }, []);
 
