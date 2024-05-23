@@ -121,7 +121,7 @@ function Dashboard() {
                         </Row>
                     )}
 
-                    <Row gutter={[16, 16]} justify="center" align="top" style={{ marginBottom: "40px", marginLeft: "30px" }}>
+                    <Row gutter={[16, 16]} justify="center" align="top" style={{ marginBottom: "40px", marginRight: "10px" }}>
                         <Col xs={24} sm={12} md={6}>
                             <Statistic title="Active Users" value={Users} formatter={formatter} />
                         </Col>
@@ -136,7 +136,7 @@ function Dashboard() {
                         </Col>
                     </Row>
 
-                    <Row gutter={[580, 26]} justify="start">
+                    <Row gutter={[26, 26]} justify="start">
                         <Col xs={24} sm={24} md={12} lg={12} xl={8}>
                             <div className="chart" style={{ width: "450px" }}>
                                 <h3>Monthly Data</h3>
