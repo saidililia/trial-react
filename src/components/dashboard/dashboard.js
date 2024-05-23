@@ -94,7 +94,7 @@ function Dashboard() {
                         <CircularProgress />
                 </div>
             ) : (
-                <div className="content" style={{width:"100vw"}}>
+                <div className="content" style={{}}>
                 <Header className="header">
                 <div className="action-buttons" style={{}}>
                     <PDFDownloadLink document={<PdfDocument />} fileName="dashboard.pdf" style={{ textDecoration: 'none' }}>
