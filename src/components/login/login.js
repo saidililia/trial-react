@@ -33,7 +33,7 @@ function Login() {
   const handleLogin = async () => {
     setLoading(false);
 
-    const response = await fetch(`/login?wilaya=${wilaya}&password=${passwordValue}&commune=${commune}`);
+    const response = await fetch(`http://saidililia.pythonanywhere.com/login?wilaya=${wilaya}&password=${passwordValue}&commune=${commune}`);
     const jsonDataLogin = await response.json();
 
     setResponseMessage(jsonDataLogin.message);
@@ -59,7 +59,7 @@ function Login() {
     };
   
     // Fetch additional data or navigate based on token
-    fetch(`/facture?commune=${commune}`, { headers })
+    fetch(`http://saidililia.pythonanywhere.com/facture?commune=${commune}`, { headers })
       .then(response => response.json())
       .then(jsonDataFacture => {
         //console.log("the full message: ...", jsonDataFacture)
