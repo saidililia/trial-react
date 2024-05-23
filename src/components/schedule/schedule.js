@@ -180,6 +180,7 @@ function Schedule() {
         console.log(`Successfully updated Recycable`);
         setLoading(true)
         fetchSchedule(); 
+        setClick1(false)
       } else {
         console.error(`Failed to update Recycable`);
       }
@@ -203,6 +204,7 @@ function Schedule() {
         console.log(`Successfully updated Burnable`);
         setLoading(true)
         fetchSchedule(); 
+        setClick2(false)
       } else {
         console.error(`Failed to update Burnable`);
       }
@@ -225,6 +227,7 @@ function Schedule() {
         console.log(`Successfully updated Non-burnable`);
         setLoading(true)
         fetchSchedule(); 
+        setClick3(false)
       } else {
         console.error(`Failed to update Non-Burnable`);
       }
