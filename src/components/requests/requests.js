@@ -76,7 +76,7 @@ function Requests() {
 
   const fetchReports = async (value = treeValue) => {
     try {
-      const response = await fetch(`/Requests?value=${value}`, {headers});
+      const response = await fetch(`https://saidililia.pythonanywhere.com/Requests?value=${value}`, {headers});
       if (response.ok) {
         const data = await response.json();
         setReports(data);
@@ -103,7 +103,7 @@ function Requests() {
 
 const handleApplyNotification = async () => { 
   try {
-    const response = await fetch(`/addNews`, {
+    const response = await fetch(`https://saidililia.pythonanywhere.com/addNews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ const formatDate = (dateString) => {
   //  // Update the report status in the reports state
   //   setReports(prevReports => prevReports.map(report => 
   //   report.id === report_id ? { ...report, status: value } : report
-  fetch('/Requests/update', {
+  fetch('https://saidililia.pythonanywhere.com/Requests/update', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'

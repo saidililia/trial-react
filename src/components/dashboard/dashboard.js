@@ -56,7 +56,7 @@ function Dashboard() {
             'Authorization': `${token}`
         };
         try {
-          const response = await fetch(`/Dashboard`, {headers});
+          const response = await fetch(`https://saidililia.pythonanywhere.com/Dashboard`, {headers});
           const responseData = await response.json();
           if (responseData.message ==='success') {
             console.log(`fetched data with value: ${responseData.endDate} ${responseData.montant} ${responseData.message}`)

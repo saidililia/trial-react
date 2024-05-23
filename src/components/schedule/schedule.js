@@ -65,7 +65,7 @@ function Schedule() {
   });
   const fetchSchedule = async (headers) => {
 
-  const responseR = await fetch('/Recycable', {headers});
+  const responseR = await fetch('https://saidililia.pythonanywhere.com/Recycable', {headers});
   const responseDataR = await responseR.json();
   if(responseDataR.message ==="success"){
     setDatesR(responseDataR.Recycable)
@@ -74,14 +74,14 @@ function Schedule() {
   else{
     console.log("message isn't equal to success.......")
   }
-  const responseB = await fetch('/Burnable', {headers});
+  const responseB = await fetch('https://saidililia.pythonanywhere.com/Burnable', {headers});
   const responseDataB = await responseB.json();
   if(responseDataB.message ==="success"){
     setDatesB(responseDataB.Burnable)
     console.log("burnable collection is.......",responseDataB.Burnable)
   }
   else{}
-  const responseN = await fetch('/NBurnable', {headers});
+  const responseN = await fetch('https://saidililia.pythonanywhere.com/NBurnable', {headers});
   const responseDataN = await responseN.json();
   if(responseDataN.message ==="success"){
     setDatesN(responseDataN.NBurnable)

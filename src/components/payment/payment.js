@@ -11,7 +11,7 @@ function Payment() {
     const navigate = useNavigate();
 
     const handleClick = async (montant, duree) => {
-        const response = await fetch('/addPayment', {
+        const response = await fetch('https://saidililia.pythonanywhere.com/addPayment', {
             method: 'POST',
             headers: {
               'Content-type': 'application/json'

@@ -27,7 +27,7 @@ function Clients() {
   useEffect(() => {
     if(isEditClicked){
       const fetchWemosInfo = () => {
-        fetch('/wemos-info')
+        fetch('https://saidililia.pythonanywhere.com/wemos-info')
           .then(response => response.json())
           .then(data => {
             if (data.status === 'success') {
@@ -59,7 +59,7 @@ function Clients() {
   
 
   useEffect(() => {
-    fetch('/Clients', {headers}) // Assuming your Flask server is running on the same host
+    fetch('https://saidililia.pythonanywhere.com/Clients', {headers}) // Assuming your Flask server is running on the same host
       .then(response => response.json())
       .then(data => {
         console.log("the full message: ...", data)
@@ -89,7 +89,7 @@ function Clients() {
 
   const handleNFC = () => {
     console.log("starting.......");
-    fetch('/control-wemos', {
+    fetch('https://saidililia.pythonanywhere.com/control-wemos', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
