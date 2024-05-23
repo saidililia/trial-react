@@ -80,8 +80,7 @@ function Clients() {
     console.log('step3: we got response json here ........... ', jsonData)
     if (jsonData.message === "success") {
       console.log(jsonData.message);
-      setAllClients(jsonData.clients);
-      
+      setAllClients(jsonData.clients); 
     }
     setShowTable(true)
   };
@@ -163,25 +162,6 @@ function Clients() {
     },
   ];
 
-  // const onChange = (id) => {
-  //   fetch('/Clients/update', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-type': 'application/json'
-  //     },
-  //     body: JSON.stringify({ id })
-  //   })
-  //     .then(response => {
-  //       if (response.ok) {
-  //         console.log(`Successfully updated client with id ${id}`);
-  //         // Reload the page after successful update
-  //         window.location.reload();
-  //       } else {
-  //         console.error(`Failed to update client with id ${id}`);
-  //         // Handle error
-  //       }
-  //     });
-  // };
 
   const onSearch = (value) => {
     console.log('search:', value);
@@ -195,7 +175,7 @@ function Clients() {
             View all clients
           </Button>
         ) : (
-          <Button className='add' type='primary' icon={<ArrowLeftOutlined style={{ color: 'white'}} />} style={{position:'relative', left:'1070px'}} onClick={handleBack}>
+          <Button className='add' type='primary' icon={<ArrowLeftOutlined style={{ color: 'white'}} />} onClick={handleBack}>
             Back
           </Button>
         )}
