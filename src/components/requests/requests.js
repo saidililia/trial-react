@@ -72,7 +72,7 @@ function Requests() {
   };
   useEffect(() => {
     fetchReports();
-  });
+  }, []);
 
   const fetchReports = async (value = treeValue) => {
     try {

@@ -70,7 +70,7 @@ function Clients() {
         console.error('Error fetching data:', error);
         setLoading(false); // Set loading to false to handle error case
       });
-  });
+  }, []);
 
   const showTableFunc = async  () =>  {
     console.log('step1: start show table func ...........')

@@ -62,7 +62,7 @@ function Schedule() {
   // retreive inial dates
   useEffect(() => {
     fetchSchedule(headers);
-  }, [fetchSchedule, headers]);
+  }, []);
   
   const fetchSchedule = async (headers) => {
   const responseR = await fetch('https://saidililia.pythonanywhere.com/Recycable', {headers});
