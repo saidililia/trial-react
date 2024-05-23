@@ -94,7 +94,7 @@ function Dashboard() {
                         <CircularProgress />
                 </div>
             ) : (
-                <div className="content">
+                <div className="content" style={{width:"100vw"}}>
                 <Header className="header">
                 <div className="action-buttons" style={{}}>
                     <PDFDownloadLink document={<PdfDocument />} fileName="dashboard.pdf" style={{ textDecoration: 'none' }}>
@@ -102,7 +102,7 @@ function Dashboard() {
                     </PDFDownloadLink>
                     <Button type="default" shape="round" icon={<PayCircleOutlined />} size="large" style={{ backgroundColor: "white", marginTop:"10px" }} onClick={handleTogglePaymentInfo}>Payment</Button>
                 </div>
-                <h2 style={{}}>{wilaya}, {commune}</h2>
+                <h2 style={{float:"left"}}>{wilaya}, {commune}</h2>
             </Header>
             <Content className="content">
                 <div className="site-layout-content">
