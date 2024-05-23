@@ -122,7 +122,7 @@ function Dashboard() {
                         </Row>
                     )}
 
-                    <Row gutter={[16, 16]} justify="center" align="top" style={{ marginBottom: "40px", marginRight: "10px" }}>
+                    <Row gutter={[26, 16]} justify="center" align="top" style={{ marginBottom: "40px", marginRight: "10px" }}>
                         <Col xs={24} sm={12} md={6}>
                             <Statistic title="Active Users" value={Users} formatter={formatter} />
                         </Col>
