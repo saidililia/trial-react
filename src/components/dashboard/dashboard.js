@@ -138,9 +138,9 @@ function Dashboard() {
 
                     <Row gutter={[580, 26]} justify="start">
                         <Col xs={24} sm={24} md={12} lg={12} xl={8}>
-                            <div className="chart" style={{ width: "550px" }}>
+                            <div className="chart" style={{ width: "400px" }}>
                                 <h3>Monthly Data</h3>
-                                <LineChart width={500} height={200} data={data}>
+                                <LineChart width={350} height={200} data={data}>
                                     <XAxis dataKey="name" />
                                     <YAxis />
                                     <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
@@ -152,9 +152,9 @@ function Dashboard() {
                             </div>
                         </Col>
                         <Col xs={24} sm={24} md={12} lg={12} xl={8}>
-                            <div className="chart" style={{ width: "550px" }}>
+                            <div className="chart" style={{ width: "400px" }}>
                                 <h3>Bar Chart</h3>
-                                <BarChart width={500} height={200} data={barChartData}>
+                                <BarChart width={350} height={200} data={barChartData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />

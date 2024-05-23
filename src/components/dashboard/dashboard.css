@@ -70,11 +70,5 @@
   align-items: center;
   height: 100vh;
 }
-.chart {
-  width: calc(50% - 20px); /* Adjust the width as needed */
-}
 
-.waste {
-  width: calc(50% - 20px); /* Adjust the width as needed */
-}
 
