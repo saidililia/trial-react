@@ -70,7 +70,9 @@ function Requests() {
   const headers = {
     'Authorization': `${token}`
   };
-  
+  useEffect(() => {
+    fetchReports();
+  });
 
   const fetchReports = async (value = treeValue) => {
     try {
@@ -90,10 +92,6 @@ function Requests() {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    fetchReports();
-  }, [fetchReports]);
 
   const handleSendNotification = (_id, _title, _first, _last) =>{
     setAlertType(null)

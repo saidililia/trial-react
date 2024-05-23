@@ -1,86 +1,91 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from '@mui/material/CircularProgress';
-import { Select, Button, Table, Input, Alert } from 'antd';
+import { Select, Button, Table, Input, Alert} from 'antd';
 import { UsergroupDeleteOutlined, EditOutlined, ArrowLeftOutlined, MinusOutlined } from '@ant-design/icons';
 import './clients.css';
 import { CiLocationOn } from "react-icons/ci";
 
 function Clients() {
+  // const [state, setState] = useState("ordered");
   const [selectedValue, setSelectedValue] = useState("GREEN");
   const [clients, setClients] = useState([]);
   const [allclients, setAllClients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showTable, setShowTable] = useState(false);
-  const [showEditDiv, setShowEditDiv] = useState(false);
-  const [selectedClientId, setSelectedClientId] = useState(null);
-  const [selectedClientFullName, setSelectedClientFullName] = useState('');
+  const [showEditDiv, setShowEditDiv] = useState(false); // State to manage the visibility of the edit div
+  const [selectedClientId, setSelectedClientId] = useState(null); // State to store the id of the selected client
+  const [selectedClientFullName, setSelectedClientFullName] = useState('')
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [wemosInfo, setWemosInfo] = useState('');
   const [type, setType] = useState('');
-
-  const token = localStorage.getItem('token');
+  
+  const token = localStorage.getItem('token')
   const headers = {
     'Authorization': `${token}`
   };
 
-  const fetchClients = () => {
-    fetch('https://saidililia.pythonanywhere.com/Clients', { headers })
-      .then(response => response.json())
-      .then(data => {
-        console.log("the full message: ...", data);
-        setClients(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-      });
-  };
-
   useEffect(() => {
-    fetchClients();
-  }, []); // Empty dependency array to run only on mount
-
-  useEffect(() => {
-    if (isEditClicked) {
+    if(isEditClicked){
       const fetchWemosInfo = () => {
         fetch('https://saidililia.pythonanywhere.com/wemos-info')
           .then(response => response.json())
           .then(data => {
             if (data.status === 'success') {
               setWemosInfo(`Wemos D1 R2 found ${data.wemos_port}`);
-              setType('success');
+              setType('success')
             } else {
               console.error('Error fetching Wemos D1 R2 info:', data.message);
-              setType('error');
-              setWemosInfo('No Wemos D1 R2 found');
+              setType('error')
+              setWemosInfo('No Wemos D1 R2 foundr')
             }
           })
           .catch(error => {
             console.error('Error fetching data:', error);
           });
       };
-
+  
+      // Fetch Wemos info initially
       fetchWemosInfo();
+  
+      // Fetch Wemos info every 3 seconds
       const intervalId = setInterval(fetchWemosInfo, 2000);
+  
+      // Cleanup function to clear interval when component unmounts
       return () => {
         clearInterval(intervalId);
       };
     }
-  }, [isEditClicked]);
+  }, [isEditClicked]); // Run whenever isEditClicked changes
+  
 
-  const showTableFunc = async () => {
-    console.log('step1: start show table func ...........');
-    const response = await fetch('https://saidililia.pythonanywhere.com/AllClients', { headers });
-    console.log('step2: show table func ...........');
+  useEffect(() => {
+    fetch('https://saidililia.pythonanywhere.com/Clients', {headers}) // Assuming your Flask server is running on the same host
+      .then(response => response.json())
+      .then(data => {
+        console.log("the full message: ...", data)
+        setClients(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false); // Set loading to false to handle error case
+      });
+  });
+
+  const showTableFunc = async  () =>  {
+    console.log('step1: start show table func ...........')
+    const response = await fetch('https://saidililia.pythonanywhere.com/AllClients', {headers});
+    console.log('step2: show table func ...........')
     const jsonData = await response.json();
-    console.log('step3: we got response json here ........... ', jsonData);
+    console.log('step3: we got response json here ........... ', jsonData)
     if (jsonData.message === "success") {
       console.log(jsonData.message);
       setAllClients(jsonData.clients);
+      
     }
-    setShowTable(true);
+    setShowTable(true)
   };
+
 
   const handleNFC = () => {
     console.log("starting.......");
@@ -89,38 +94,40 @@ function Clients() {
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify({
+      body: JSON.stringify({ 
         selectedClientId: selectedClientId,
         selectedClientFullName: selectedClientFullName,
-        selectedValue: selectedValue
-      })
+        selectedValue: selectedValue})
     })
-      .then(response => {
-        if (response.ok) {
-          console.log(`Successfully updated Recycable`);
-        } else {
-          console.error(`Failed to update Recycable`);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    .then(response => {
+      if (response.ok) {
+        console.log(`Successfully updated Recycable`);
+        //window.location.reload();
+      } else {
+        console.error(`Failed to update Recycable`);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   };
+  
 
   const handleBack = () => {
     setShowTable(false);
   };
 
   const handleEditClick = (id, first, last) => {
-    setIsEditClicked(true);
-    setSelectedClientId(id);
-    setSelectedClientFullName(first + " " + last);
-    setShowEditDiv(true);
-  };
+     setIsEditClicked(true)
+      setSelectedClientId(id);
+      setSelectedClientFullName(first + " " + last)
+      setShowEditDiv(true); // Show the edit div when EditOutlined button is clicked
+};
+
 
   const handleCancelEdit = () => {
     setIsEditClicked(false);
-    setShowEditDiv(false);
+    setShowEditDiv(false); // Hide the edit div when cancel button is clicked
   };
 
   const columns = [

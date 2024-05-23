@@ -1,49 +1,49 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import './schedule.css';
 import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { Button, Select } from 'antd';
+import { Button, Select} from 'antd';
 import { Card } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 const Hours = [
-  { value: '00', title: '00' },
-  { value: '01', title: '01' },
-  { value: '02', title: '02' },
-  { value: '03', title: '03' },
-  { value: '04', title: '04' },
-  { value: '05', title: '05' },
-  { value: '06', title: '06' },
-  { value: '07', title: '07' },
-  { value: '08', title: '08' },
-  { value: '09', title: '09' },
-  { value: '10', title: '10' },
-  { value: '11', title: '11' },
-  { value: '12', title: '12' },
-  { value: '13', title: '13' },
-  { value: '14', title: '14' },
-  { value: '15', title: '15' },
-  { value: '16', title: '16' },
-  { value: '17', title: '17' },
-  { value: '18', title: '18' },
-  { value: '19', title: '19' },
-  { value: '20', title: '20' },
-  { value: '21', title: '21' },
-  { value: '22', title: '22' },
-  { value: '23', title: '23' },
-];
+  { value: '00', title: '00'},
+  { value: '01', title: '01'},
+  { value: '02', title: '02'},
+  { value: '03', title: '03'},
+  { value: '04', title: '04'},
+  { value: '05', title: '05'},
+  { value: '06', title: '06'},
+  { value: '07', title: '07'},
+  { value: '08', title: '08'},
+  { value: '09', title: '09'},
+  { value: '10', title: '10'},
+  { value: '11', title: '11'},
+  { value: '12', title: '12'},
+  { value: '13', title: '13'},
+  { value: '14', title: '14'},
+  { value: '15', title: '15'},
+  { value: '16', title: '16'},
+  { value: '17', title: '17'},
+  { value: '18', title: '18'},
+  { value: '19', title: '19'},
+  { value: '20', title: '20'},
+  { value: '21', title: '21'},
+  { value: '22', title: '22'},
+  { value: '23', title: '23'},
+]
 const Days = [
-  { value: 'Sunday', title: 'Sunday' },
-  { value: 'Monday', title: 'Monday' },
-  { value: 'Tuesday', title: 'Tuesday' },
-  { value: 'Wednesday', title: 'Wednesday' },
-  { value: 'Thursday', title: 'Thursday' },
-  { value: 'Friday', title: 'Friday' },
-  { value: 'Saturday', title: 'Saturday' },
-];
+  { value: 'Sunday', title: 'Sunday'},
+  { value: 'Monday', title: 'Monday'},
+  { value: 'Tuesday', title: 'Tuesday'},
+  { value: 'Wednesday', title: 'Wednesday'},
+  { value: 'Thursday', title: 'Thursday'},
+  { value: 'Friday', title: 'Friday'},
+  { value: 'Saturday', title: 'Saturday'},
+]
 
 function Schedule() {
   const [loading, setLoading] = useState(true);
@@ -54,77 +54,90 @@ function Schedule() {
   const [click2, setClick2] = useState(false);
   const [click3, setClick3] = useState(false);
 
-  const token = localStorage.getItem('token');
+
+  const token = localStorage.getItem('token')
   const headers = {
     'Authorization': `${token}`
   };
-
-  const fetchSchedule = useCallback(async (headers) => {
-    try {
-      const responseR = await fetch('https://saidililia.pythonanywhere.com/Recycable', { headers });
-      const responseDataR = await responseR.json();
-      if (responseDataR.message === "success") {
-        setDatesR(responseDataR.Recycable);
-        console.log("recycable collection is.......", responseDataR.Recycable, datesR);
-      } else {
-        console.log("message isn't equal to success.......");
-      }
-
-      // Similar fetch requests for 'Burnable' and 'NBurnable'
-
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      setLoading(false);
-    }
-  }, [headers]); // Include headers in the dependency array
-
+  // retreive inial dates
   useEffect(() => {
     fetchSchedule(headers);
-  }, [fetchSchedule, headers]); // Include fetchSchedule and headers in the dependency array
-
+  });
+  
+  const fetchSchedule = async (headers) => {
+  const responseR = await fetch('https://saidililia.pythonanywhere.com/Recycable', {headers});
+  const responseDataR = await responseR.json();
+  if(responseDataR.message ==="success"){
+    setDatesR(responseDataR.Recycable)
+    console.log("recycable collection is.......",responseDataR.Recycable, datesR)
+  }
+  else{
+    console.log("message isn't equal to success.......")
+  }
+  const responseB = await fetch('https://saidililia.pythonanywhere.com/Burnable', {headers});
+  const responseDataB = await responseB.json();
+  if(responseDataB.message ==="success"){
+    setDatesB(responseDataB.Burnable)
+    console.log("burnable collection is.......",responseDataB.Burnable)
+  }
+  else{}
+  const responseN = await fetch('https://saidililia.pythonanywhere.com/NBurnable', {headers});
+  const responseDataN = await responseN.json();
+  if(responseDataN.message ==="success"){
+    setDatesN(responseDataN.NBurnable)
+  }
+  else{
+    
+  }
+  setLoading(false)
+}
 
   const handleClick1 = () => {
     setClick1(true);
-  };
+  }
   const handleClick2 = () => {
     setClick2(true);
-  };
+  }
   const handleClick3 = () => {
     setClick3(true);
-  };
+  }
 
   const handleDatesB = () => {
-    setDatesB([...datesB, {}]);
+    setDatesB([...datesB, {}]); // Append an empty object to datesR
   };
   const handleDatesR = () => {
-    setDatesR([...datesR, {}]);
+    setDatesR([...datesR, {}]); // Append an empty object to datesR
   };
   const handleDatesN = () => {
-    setDatesN([...datesN, {}]);
+    setDatesN([...datesN, {}]); // Append an empty object to datesR
   };
   const deleteItem = (collection) => {
-    collection.pop();
-    console.log("this is the new collection");
-    console.log(collection);
-    if (collection === datesR) {
-      handleSubmitR();
-    }
-    if (collection === datesB) {
-      handleSubmitB();
-    }
-    if (collection === datesN) {
-      handleSubmitN();
-    }
-  };
+      collection.pop();
+      console.log("this is the new collection");
+      console.log(collection);
+      if (collection === datesR){
+        handleSubmitR();
+      }
+      if (collection === datesB){
+        handleSubmitB();
+      }
+      if (collection === datesN){
+        handleSubmitN();
+      }
+
+      
+  }
 
   const onChangedHour = (collection, index, hour) => {
+    // Create a new array with the updated object at the specified index
     const updatedCollection = collection.map((item, i) => {
       if (i === index) {
-        return { ...item, 'hour': hour };
+        return { ...item, 'hour': hour }; // Update the hour property of the object at the specified index
       }
       return item;
     });
+  
+    // Update the state based on the original collection passed in
     if (collection === datesR) {
       setDatesR(updatedCollection);
     } else if (collection === datesN) {
@@ -132,13 +145,13 @@ function Schedule() {
     } else if (collection === datesB) {
       setDatesB(updatedCollection);
     }
-    console.log("updates successfully");
-  };
-
+    console.log("updates successfully")
+  }
+  
   const onChangedDay = (collection, index, day) => {
     const updatedCollection = collection.map((item, i) => {
       if (i === index) {
-        return { ...item, 'day': day };
+        return { ...item, 'day': day }; 
       }
       return item;
     });
@@ -149,74 +162,74 @@ function Schedule() {
     } else if (collection === datesB) {
       setDatesB(updatedCollection);
     }
-    console.log("updates successfully");
-  };
-
-  const handleSubmitR = () => {
-    console.log(datesR);
+    console.log("updates successfully")
+  }
+  
+  const handleSubmitR = () =>{
+    console.log(datesR)
     fetch('/update-Recycable', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': `${token}`
-      },
-      body: JSON.stringify({ dates: datesR })
+        'Authorization': `${token}` // Include the token in the headers
+     },
+      body: JSON.stringify({dates: datesR})
     })
-      .then(response => {
-        if (response.ok) {
-          console.log(`Successfully updated Recycable`);
-          window.location.reload();
-        } else {
-          console.error(`Failed to update Recycable`);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  };
+    .then(response => {
+      if (response.ok) {
+        console.log(`Successfully updated Recycable`);
+        window.location.reload();
+      } else {
+        console.error(`Failed to update Recycable`);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
 
-  const handleSubmitB = () => {
+  const handleSubmitB = () =>{
     fetch('/update-Burnable', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': `${token}`
+        'Authorization': `${token}` // Include the token in the headers
       },
-      body: JSON.stringify({ dates: datesB })
+      body: JSON.stringify({dates: datesB})
     })
-      .then(response => {
-        if (response.ok) {
-          console.log(`Successfully updated Burnable`);
-          window.location.reload();
-        } else {
-          console.error(`Failed to update Burnable`);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  };
-  const handleSubmitN = () => {
+    .then(response => {
+      if (response.ok) {
+        console.log(`Successfully updated Burnable`);
+        window.location.reload();
+      } else {
+        console.error(`Failed to update Burnable`);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+  const handleSubmitN = () =>{
     fetch('/update-NBurnable', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': `${token}`
+        'Authorization': `${token}` // Include the token in the headers
       },
-      body: JSON.stringify({ dates: datesN })
+      body: JSON.stringify({dates: datesN})
     })
-      .then(response => {
-        if (response.ok) {
-          console.log(`Successfully updated Non-burnable`);
-          window.location.reload();
-        } else {
-          console.error(`Failed to update Non-Burnable`);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  };
+    .then(response => {
+      if (response.ok) {
+        console.log(`Successfully updated Non-burnable`);
+        window.location.reload();
+      } else {
+        console.error(`Failed to update Non-Burnable`);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
   return (
     <div className="schedule">
 
