@@ -178,7 +178,7 @@ function Schedule() {
     .then(response => {
       if (response.ok) {
         console.log(`Successfully updated Recycable`);
-        window.location.reload();
+        fetchSchedule(); 
       } else {
         console.error(`Failed to update Recycable`);
       }
@@ -200,7 +200,7 @@ function Schedule() {
     .then(response => {
       if (response.ok) {
         console.log(`Successfully updated Burnable`);
-        window.location.reload();
+        fetchSchedule(); 
       } else {
         console.error(`Failed to update Burnable`);
       }
@@ -221,7 +221,7 @@ function Schedule() {
     .then(response => {
       if (response.ok) {
         console.log(`Successfully updated Non-burnable`);
-        window.location.reload();
+        fetchSchedule(); 
       } else {
         console.error(`Failed to update Non-Burnable`);
       }
