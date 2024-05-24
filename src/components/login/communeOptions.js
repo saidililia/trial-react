@@ -4,9 +4,6 @@ const communeOptions = {
       { value: 'Kouba', label: 'Kouba' },
       // Add more commune options for Adrar as needed
     ],  
-    'Blida': [
-      { value: 'Chiffa', label: 'Chiffa' },
-    ]
     // Add commune options for all other wilayas
   };
   

@@ -1,8 +1,5 @@
 const wilayaOptions = [
     { value: 'Alger', label: 'Alger' },
-    { value: 'Adrar', label: 'Adrar' },
-    { value: 'Chlef', label: 'Chlef' },
-    { value: 'Blida', label: 'Blida' },
     // { value: 'Laghouat', label: 'Laghouat' },
     // { value: 'Oum El Bouaghi', label: 'Oum El Bouaghi' },
     // { value: 'Batna', label: 'Batna' },
