@@ -42,6 +42,7 @@ function Dashboard() {
     const [montant, setMontant] = useState(null)
     const [duree, setDuree] = useState(null)
     const [Users, setUsers] = useState(0)
+    const [averageScore, setAverageScore] = useState(0.00);
     
 
     useEffect(() => {
@@ -68,6 +69,8 @@ function Dashboard() {
             setEndDate(responseData.endDate)
             console.log("total: ", responseData.totalUsers)
             setUsers(responseData.totalUsers)
+            setAverageScore(responseData.averageScore)
+            console.log("average: ", responseData.averageScore)
             
             
           } else {
@@ -127,7 +130,7 @@ function Dashboard() {
                             <Statistic title="Active Users" value={Users} formatter={formatter} />
                         </Col>
                         <Col xs={24} sm={12} md={6}>
-                            <Statistic title="Average Score" value={0} formatter={formatter} />
+                            <Statistic title="Average Score" value={averageScore} formatter={averageScore} precision={2}/>
                         </Col>
                         <Col xs={24} sm={12} md={6}>
                             <Statistic title="Total Waste in Kg" value={0} prefix="" formatter={formatter} />
