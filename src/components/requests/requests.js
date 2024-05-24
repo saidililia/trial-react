@@ -168,7 +168,8 @@ const formatDate = (dateString) => {
       console.log(`Successfully updated report with id ${report_id}`);
       // Optionally, you may reload the page after successful update
       //
-      window.location.reload();
+      setLoading(true)
+      fetchReports();
     } else {
       console.error(`Failed to update report with id ${report_id}`);
       // Handle error
