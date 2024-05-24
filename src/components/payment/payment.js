@@ -27,7 +27,7 @@ function Payment() {
         console.log("print jsonData message: ..........", jsonData.message)
         // setResponseMessage(jsonData.message);
 
-    if (jsonData.message === "success") {
+    if (response.ok) {
       console.log(jsonData.message);
       navigate('/Dashboard')
     }
