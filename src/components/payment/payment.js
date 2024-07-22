@@ -40,26 +40,26 @@ function Payment() {
     return (
         <div className="payment">
             <header className="payment-header">
-                <h1>Welcome to Green</h1>
-                <h3>The first software system in Algeria to manage domestic waste recycling</h3>
+                <h1>Welcome to Trial</h1>
+                <h3>The first Digital waste management and recycling system in Algeria.</h3>
             </header>
             <div className="payment-cards">
                 <Row gutter={24} justify="center">
                     <Col xs={24} sm={8}>
                         <Card title="Monthly Plan" bordered={false} className="payment-card" style={{ backgroundColor: '#6CC47C' }}>
-                            <h1>1000 DA</h1>
+                            <h1>2000 DA</h1>
                             <Button onClick={() => handleClick(1000, 1)}>Apply</Button>
                         </Card>
                     </Col>
                     <Col xs={24} sm={8}>
                         <Card title="6 Months Plan" bordered={false} className="payment-card" style={{ backgroundColor: "#FF99CC" }}>
-                            <h1>5000 DA</h1>
+                            <h1>10000 DA</h1>
                             <Button onClick={() => handleClick(5000, 6)}>Apply</Button>
                         </Card>
                     </Col>
                     <Col xs={24} sm={8}>
                         <Card title="Annual Plan" bordered={false} className="payment-card" style={{ backgroundColor: "#A4D8D8" }}>
-                            <h1>10000 DA</h1>
+                            <h1>20000 DA</h1>
                             <Button onClick={() => handleClick(10000, 12)}>Apply</Button>
                         </Card>
                     </Col>

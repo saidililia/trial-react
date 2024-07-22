@@ -28,7 +28,7 @@
 
 .clients .User {
     position: relative; 
-    height: 95px;
+    height: 105px;
     width: 100%;
     margin-bottom: 10px;
     padding: 10px 0px;
@@ -50,7 +50,7 @@
 
 .clients .title p {
     font-size: medium;
-    font-weight: bold;
+    color: #3c3a3a;
     display: inline;
     padding: 0px 10px;
 }
@@ -134,4 +134,8 @@
     justify-content: center;
     align-items: center;
     height: 100vh
-  }
+}
+.clients .hover-green:hover {
+    color: rgb(84, 185, 94);
+}
+

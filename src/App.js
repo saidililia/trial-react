@@ -7,6 +7,7 @@ import Requests from './components/requests/requests';
 import Login from './components/login/login';
 import Clients from "./components/clients/clients";
 import Payment from "./components/payment/payment";
+import { BarsOutlined, BellOutlined, TeamOutlined, ClockCircleOutlined, HomeOutlined } from '@ant-design/icons';
 import './App.css'
 import Auth from './components/auth';
 
@@ -94,22 +95,22 @@ function AppContent() {
               style={{ height: '100%', borderRight: 0 }}
             >
               <Menu.Item key="1" style={selectedMenuItem === '1' ? { backgroundColor: 'rgb(66, 108, 70)', color: 'white' } : null}>
-                <Link to="/Dashboard">Dashboard</Link>
+                <Link to="/Dashboard"><BarsOutlined style={{margin:"0px 10px"}}/>Dashboard</Link>
               </Menu.Item>
               <Menu.Item key="2" style={selectedMenuItem === '2' ? { backgroundColor: 'rgb(66, 108, 70)', color: 'white' } : null}>
-                <Link to="/Schedule">Schedule</Link>
+                <Link to="/Schedule"><ClockCircleOutlined style={{margin:"0px 10px"}}/>Schedule</Link>
               </Menu.Item>
               <Menu.Item key="3" style={selectedMenuItem === '3' ? { backgroundColor: 'rgb(66, 108, 70)', color: 'white' } : null}>
-                <Link to="/Clients">Clients</Link>
+                <Link to="/Clients"><TeamOutlined style={{margin:"0px 10px"}}/> Clients</Link>
               </Menu.Item>
               <Menu.Item key="4" style={selectedMenuItem === '4' ? { backgroundColor: 'rgb(66, 108, 70)', color: 'white' } : null}>
-                <Link to="/Requests">Requests</Link>
+                <Link to="/Requests"><BellOutlined style={{margin:"0px 10px"}}/>Requests</Link>
               </Menu.Item>
             </Menu>
           </Sider>
           <Layout>
             <Header className="site-layout-background" style={{ padding: 0, backgroundColor: "white", height: "120px" }}>
-              <h1 style={{marginTop:"30px", marginLeft:"20px", color: 'rgb(44, 44, 70)'}}>{pageTitle}</h1>
+              <h2 style={{marginTop:"30px", marginLeft:"20px", color: 'rgb(44, 44, 70)'}}><HomeOutlined/>/ {pageTitle}</h2>
             </Header>
             <Content style={{ margin: '0 16px', overflowY: 'auto' }}>
               <Routes>

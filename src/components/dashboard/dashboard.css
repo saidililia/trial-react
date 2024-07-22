@@ -3,9 +3,9 @@
 }
 
 .header {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   padding: 0 20px;
   background-color: #f0f2f5;
 }
