@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from '@mui/material/CircularProgress';
 import { Select, Button, Table, Input, Alert } from 'antd';
-import { UsergroupDeleteOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { UsergroupDeleteOutlined, ArrowLeftOutlined, DeleteOutlined, ExceptionOutlined, ExclamationOutlined } from '@ant-design/icons';
 import './clients.css';
 import { CiLocationOn } from "react-icons/ci";
+const { Search } = Input;
+
 
 function Clients() {
   const [clients, setClients] = useState([]);
@@ -85,7 +87,18 @@ function Clients() {
     {
       title: 'Rank',
       dataIndex: 'rank',
+      key: 'rank',
+    },
+    {
+      title: 'Actions',
+      dataIndex: 'actions',
       key: 'actions',
+      render: (text, record) => (
+        <div>
+          <Button style={{marginRight:"10px"}}><DeleteOutlined/></Button>
+          <Button><ExclamationOutlined/></Button>
+        </div>
+      ),
     },
   ];
 
@@ -109,9 +122,13 @@ function Clients() {
             View all clients
           </Button>
         ) : (
-          <Button className='add' type='primary' icon={<ArrowLeftOutlined style={{ color: 'white' }} />} onClick={handleBack}>
-            Back
-          </Button>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Button className='add' type='primary' icon={<ArrowLeftOutlined style={{ color: 'white' }} />} onClick={handleBack}>
+              Back
+            </Button>
+            <Search style={{ marginLeft: '10px', flexGrow: 1, width:"400px" }} placeholder="search user" enterButton="Search" size="medium" />
+          </div>
+          
         )}
       </div>
       <div className="container">
@@ -127,6 +144,7 @@ function Clients() {
             phone: client['Phone'],
             score: client['score'],
             rank: index,
+            action: client['score']
           }))} style={{ width: '100%' }} />
         ) : (
           <div className="cards">

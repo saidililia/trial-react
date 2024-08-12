@@ -85,7 +85,7 @@ function Login() {
       {loading ? (
         <div className="container">
           <div className="loginBox">
-            <h2>Sign in</h2>
+            <h2>Sign in Trial.</h2>
             <Select
               showSearch
               filterOption={filterOption}
