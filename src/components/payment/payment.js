@@ -5,20 +5,21 @@ import { Button, Card, Col, Row } from 'antd';
 import './payment.css';
 
 function Payment() {
-    const location = useLocation();
-    const { commune } = location.state || {};
-    // const [responseMessage, setResponseMessage] = useState('');
+    const token = localStorage.getItem('token');
+    // const location = useLocation();
+    // const { commune } = location.state || {};
+    // // const [responseMessage, setResponseMessage] = useState('');
     const navigate = useNavigate();
 
     const handleClick = async (montant, duree) => {
         const response = await fetch('https://saidililia.pythonanywhere.com/addPayment', {
             method: 'POST',
             headers: {
+              'Authorization': `${token}`,
               'Content-type': 'application/json'
             },
             body: JSON.stringify({ 
               montant: montant,
-              commune: commune,
               duree: duree
             })
           });

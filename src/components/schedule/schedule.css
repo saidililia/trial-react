@@ -1,4 +1,23 @@
 
+.circle {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.green-circle {
+  background-color: green;
+}
+
+.orange-circle {
+  background-color: orange;
+}
+
+.red-circle {
+  background-color: red;
+}
 
 .schedule .header{
     text-align: left;
@@ -33,16 +52,18 @@
   .add-button:hover {
     background-color: #0056b3; /* Adjust the color as needed */
   }
-  .schedule .element {
-    padding: 10px;
+  
+
+
+.schedule .element {
+    padding: 20px;
     margin: 10px 5px; /* Adjust margin for spacing */
     display: inline-block;
     border-radius: 4px;
     vertical-align: top; /* Align boxes at the top */
     width: calc(33% - 10px); /* Adjust width to 1/3 of the container */
     box-sizing: border-box; /* Include padding and border in width calculation */
-  }
-
+}
 .schedule .element .Butt{
   position: relative;
   bottom: 20px;
@@ -65,13 +86,12 @@
   float: right;
 }
 
-.schedule .container{
-  border-radius: 4px;
-  background-color: #e7e7e7;
-  height: 100vh;
+.schedule .container {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 10px; /* Optional: Add some spacing between the elements */
 }
+
 
 .schedule .hours .added .hour{
   display: inline-block;

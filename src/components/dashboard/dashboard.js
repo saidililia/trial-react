@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import './dashboard.css';
 import { Button, Col, Layout, Row, Statistic, Collapse, Select, Dropdown, Menu } from 'antd';
 import CountUp from 'react-countup';
-import ScoreboardIcon from '@mui/icons-material/Scoreboard';
+import { renderToString } from 'react-dom/server';
+import ScoreboardOutlinedIcon from '@mui/icons-material/ScoreboardOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
-import { DownloadOutlined, PayCircleOutlined, TeamOutlined } from '@ant-design/icons';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { PDFDownloadLink, Document, Page, Text, View} from '@react-pdf/renderer';
+import { DeleteOutlined, DownloadOutlined, PayCircleOutlined, TeamOutlined } from '@ant-design/icons';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image} from '@react-pdf/renderer';
 import { Avatar, Card } from 'antd';
+import { Svg } from '@react-pdf/renderer';
 import Lottie from 'lottie-react';
 import animation from './DZFlag.json'
 const { Meta } = Card;
@@ -16,35 +18,6 @@ const { Header, Content } = Layout;
 const { Panel } = Collapse;
 const { Option } = Select;
 
-// const data2023 = [
-//     { name: 'Jan', avgScore: 4000, users: 2400 },
-//     { name: 'Feb', avgScore: 3000, users: 1398 },
-//     { name: 'Mar', avgScore: 2000, users: 9800 },
-//     { name: 'Apr', avgScore: 2780, users: 3908 },
-//     { name: 'May', avgScore: 1890, users: 4800 },
-//     { name: 'June', avgScore: 2390, users: 3800 },
-//     { name: 'July', avgScore: 3490, users: 4300 },
-//     { name: 'Aug', avgScore: 3490, users: 4300 },
-//     { name: 'Sep', avgScore: 4490, users: 4300 },
-//     { name: 'Oct', avgScore: 3490, users: 2100 },
-//     { name: 'Nov', avgScore: 2490, users: 2300 },
-//     { name: 'Dec', avgScore: 3490, users: 2700 },
-// ];
-
-// const data2024 = [
-//     { name: 'Jan', avgScore: 4100, users: 2500 },
-//     { name: 'Feb', avgScore: 3200, users: 1450 },
-//     { name: 'Mar', avgScore: 2100, users: 10000 },
-//     { name: 'Apr', avgScore: 2880, users: 4000 },
-//     { name: 'May', avgScore: 1990, users: 4900 },
-//     { name: 'June', avgScore: 2490, users: 3900 },
-//     { name: 'July', avgScore: 3590, users: 4400 },
-//     { name: 'Aug', avgScore: 3590, users: 4400 },
-//     { name: 'Sep', avgScore: 4590, users: 4400 },
-//     { name: 'Oct', avgScore: 3590, users: 2200 },
-//     { name: 'Nov', avgScore: 2590, users: 2400 },
-//     { name: 'Dec', avgScore: 3590, users: 2800 },
-// ];
 
 const formatter = (value) => <CountUp end={value} separator="," />;
 
@@ -52,8 +25,7 @@ function Dashboard() {
     const navigate = useNavigate();
     const [showPaymentInfo, setShowPaymentInfo] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [wilaya, setWilaya] = useState('');
-    const [commune, setCommune] = useState('');
+    const [admin, setAdmin] = useState(null);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [montant, setMontant] = useState(null);
@@ -61,10 +33,44 @@ function Dashboard() {
     const [Users, setUsers] = useState(0);
     const [averageScore, setAverageScore] = useState(0.00);
     const [selectedVariable, setSelectedVariable] = useState('avgScore');
-    const [selectedYear, setSelectedYear] = useState('2023');
+    const [selectedYear, setSelectedYear] = useState('2024');
     const [monthlyData, setMonthlyData] = useState({});
     
-
+    const styles = StyleSheet.create({
+        page: {
+          padding: 30,
+          fontSize: 12,
+        },
+        section: {
+          marginBottom: 20,
+        },
+        title: {
+          fontSize: 18,
+          marginBottom: 10,
+          textAlign: 'center',
+        },
+        chartContainer: {
+          height: 400,
+          marginBottom: 20,
+        },
+        table: {
+          display: 'table',
+          width: 'auto',
+          margin: '10px 0',
+        },
+        tableRow: {
+          flexDirection: 'row',
+        },
+        tableCol: {
+          width: '50%',
+          padding: 5,
+        },
+        tableCell: {
+          margin: 'auto',
+          marginTop: 5,
+        },
+      });
+      
     useEffect(() => {
         const token = localStorage.getItem('token');
         fetchDash(token);
@@ -77,12 +83,11 @@ function Dashboard() {
             'Authorization': `${token}`
         };
         try {
-          const response = await fetch(`https://saidililia.pythonanywhere.com/Dashboard`, {headers});
+          const response = await fetch('https://saidililia.pythonanywhere.com/Dashboard', {headers});
           const responseData = await response.json();
           if (responseData.message === 'success') {
             console.log(`fetched data with value: ${responseData.endDate} ${responseData.montant} ${responseData.message}`);
-            setCommune(responseData.commune);
-            setWilaya(responseData.wilaya);
+            setAdmin(responseData.admin);
             setDuree(responseData.duree);
             setMontant(responseData.montant);
             setStartDate(responseData.startDate);
@@ -145,7 +150,18 @@ function Dashboard() {
                 <Header className="header">
                 
                 <div className="action-buttons" style={{float:"right"}}>
-                    <PDFDownloadLink document={<PdfDocument />} fileName="dashboard.pdf" style={{ textDecoration: 'none' }}>
+                    <PDFDownloadLink document={<PdfDocument 
+                        monthlyData={monthlyData}
+                        selectedYear={selectedYear}
+                        admin={admin}
+                        Users={Users}
+                        averageScore={averageScore}
+                        startDate={startDate}
+                        endDate={endDate}
+                        montant={montant}
+                        duree={duree}
+                        styles={styles}
+                    />} fileName="dashboard.pdf" style={{ textDecoration: 'none' }}>
                         <Button type="primary" shape="default" icon={<DownloadOutlined />} size="large" style={{ backgroundColor: "rgb(66, 108, 70)", marginRight:"5px" }}>Download</Button>
                     </PDFDownloadLink>
 
@@ -159,8 +175,8 @@ function Dashboard() {
                             <Col span={24}>
                                 <Collapse defaultActiveKey={['1']}>
                                     <Panel header="Payment Information" key="1">
-                                        <p>Here are your Payment Information: you paid {montant}DA on {startDate}, for {duree} month</p>
-                                        <p>Your subscription ends on {endDate}</p>
+                                        <p>Here are your Payment Information: you paid <strong>{montant}DA</strong> on <strong>{startDate}</strong>, for <strong>{duree} month</strong></p>
+                                        <p>Your subscription ends on <strong>{endDate}</strong></p>
                                         <Button type="default" onClick={handleTogglePaymentInfo}>Collapse</Button>
                                     </Panel>
                                 </Collapse>
@@ -173,8 +189,8 @@ function Dashboard() {
                                 <Col xs={24} sm={8} md={8} lg={8} xl={8}>
                                     <Card>
                                         <Meta
-                                            avatar={<TeamOutlined />}
-                                            title="Active Users"
+                                            avatar={<TeamOutlined style={{fontSize:"25px"}}/>}
+                                            title="active users"
                                         />
                                         <Statistic value={Users} formatter={formatter} />
                                     </Card>
@@ -182,8 +198,8 @@ function Dashboard() {
                                 <Col xs={24} sm={8} md={8} lg={8} xl={8}>
                                     <Card>
                                     <Meta
-                                            avatar={<ScoreboardIcon />}
-                                            title="Average Score"
+                                            avatar={<ScoreboardOutlinedIcon />}
+                                            title="average score"
                                         />
                                         <Statistic value={averageScore} precision={2} />
                                     </Card>
@@ -191,27 +207,14 @@ function Dashboard() {
                                 <Col xs={24} sm={8} md={8} lg={8} xl={8}>
                                     <Card>
                                     <Meta
-                                            avatar={<ScoreboardIcon />}
-                                            title="Active Users"
+                                            avatar={<DeleteOutlined style={{fontSize:"22px"}}/>}
+                                            title="total waste in kg"
                                         />
-                                        <Statistic value={averageScore} precision={2} />
+                                        <Statistic value={0} precision={2} />
                                     </Card>
                                 </Col>
                             </Row>
-                            {/* <Row justify="start" style={{ marginBottom: "20px" }}>
-                                <Col span={12}>
-                                    <Select defaultValue="avgScore" style={{ width: 180 }} onChange={handleVariableChange}>
-                                        <Option value="avgScore">Average Score</Option>
-                                        <Option value="users">Number of Users</Option>
-                                    </Select>
-                                </Col>
-                                <Col span={12}>
-                                    <Select defaultValue="2023" style={{ width: 120 }} onChange={handleYearChange}>
-                                        <Option value="2023">2023</Option>
-                                        <Option value="2024">2024</Option>
-                                    </Select>
-                                </Col>
-                            </Row> */}
+                           
                             <div>
                             <Row justify="end" style={{ marginBottom: "20px" }}>
                                     <Select defaultValue="avgScore" style={{ width: 150 }} onChange={handleVariableChange}>
@@ -220,8 +223,8 @@ function Dashboard() {
                                     </Select>
                     
                                     <Select defaultValue="2023" style={{ width: 100 }} onChange={handleYearChange}>
-                                        <Option value="2023">2023</Option>
-                                        <Option value="2024">2024</Option>
+                                        <Option value="2023">2024</Option>
+                                        <Option value="2024">2025</Option>
                                     </Select>
                             </Row>
                             <Row justify="start">
@@ -244,17 +247,17 @@ function Dashboard() {
                         </div>
                         <div style={{ width: '290px' }}>
                             <Card style={{ height: '100%', width: '290px' }}>
-                            <h2 >{wilaya}, {commune}</h2>
+                            <h2 >{admin.wilaya}, {admin.commune}</h2>
                             <div style={{ width: 250, height: 150 }}>
                                <Lottie animationData={animation} loop={true} />
                             </div>
-                            <p><strong>Total Population:</strong> <span style={{color:"green"}}>2 657 000</span></p>
-                            <p><strong>Geographical Location:</strong> <span style={{color:"green"}}>2 657 000</span></p>
-                            <p><strong>Population Density:</strong> <span style={{color:"green"}}>2 657 000</span></p>
-                            <p><strong>Municipal Code:</strong> <span style={{color:"green"}}>2 657 000</span></p>
-                            <p><strong>Key Infrastructure:</strong> <span style={{color:"green"}}>2 657 000</span></p>
-                            <p><strong>Literacy Rate:</strong> <span style={{color:"green"}}>2 657 000</span></p>
-                            <p><strong>Crime Rate:</strong> <span style={{color:"green"}}>2 657 000</span></p>
+                            <p><strong>Total Population:</strong> <span style={{color:"green"}}> {admin.population} habitants</span></p>
+                            <p><strong>Geographical Location:</strong> <span style={{color:"green"}}>{admin.geography}</span></p>
+                            <p><strong>Population Density:</strong> <span style={{color:"green"}}>{admin.density}/square Km</span></p>
+                            <p><strong>Municipal Code:</strong> <span style={{color:"green"}}>{admin.code}</span></p>
+                            <p><strong>Key Infrastructure:</strong> <span style={{color:"green"}}>unknown</span></p>
+                            <p><strong>Literacy Rate:</strong> <span style={{color:"green"}}>unknown</span></p>
+                            <p><strong>Crime Rate:</strong> <span style={{color:"green"}}>unknwon</span></p>
                             </Card>
                         </div>
                     </div>
@@ -266,18 +269,63 @@ function Dashboard() {
         </Layout>
     );
 }
+const renderChart = (data) => {
+    const chartSvg = renderToString(
+      <LineChart width={500} height={300} data={data}>
+        <XAxis dataKey="name" />
+        <YAxis />
+        <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="avgScore" stroke="#8884d8" />
+        <Line type="monotone" dataKey="users" stroke="#82ca9d" />
+      </LineChart>
+    );
+    return chartSvg;
+};
 
-const PdfDocument = () => (
+const PdfDocument = ({ monthlyData, selectedYear, admin, Users, averageScore, startDate, endDate, montant, duree, styles }) => (
     <Document>
-        <Page size="A4">
-            <View >
-                <Text>Monthly Data</Text>
-            </View>
-            <View >
-                <Text>Bar Chart</Text>
-            </View>
-        </Page>
+      <Page style={styles.page}>
+        <Text style={styles.title}>Dashboard Report - {selectedYear}</Text>
+        
+        <View style={styles.section}>
+          <Text>Admin Information</Text>
+          <Text>Location: {admin.wilaya}, {admin.commune}</Text>
+          <Text>Population: {admin.population}</Text>
+          <Text>Geography: {admin.geography}</Text>
+          <Text>Density: {admin.density} per square Km</Text>
+          <Text>Municipal Code: {admin.code}</Text>
+        </View>
+        
+        <View style={styles.section}>
+          <Text>Subscription Information</Text>
+          <Text>Paid Amount: {montant} DA</Text>
+          <Text>Subscription Start Date: {startDate}</Text>
+          <Text>Subscription End Date: {endDate}</Text>
+          <Text>Subscription Duration: {duree} months</Text>
+        </View>
+        
+        <View style={styles.section}>
+          <Text>Key Statistics</Text>
+          <Text>Total Active Users: {Users}</Text>
+          <Text>Average Score: {averageScore.toFixed(2)}</Text>
+        </View>
+        
+        <View style={styles.chartContainer}>
+          <Svg>
+            {/* <Svg
+              width="500"
+              height="300"
+              dangerouslySetInnerHTML={{ __html: renderChart(monthlyData[selectedYear]) }}
+            /> */}
+          </Svg>
+        </View>
+      </Page>
     </Document>
-);
+  );
+       
+            
+
 
 export default Dashboard;

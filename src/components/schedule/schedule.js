@@ -247,9 +247,8 @@ function Schedule() {
         ) : (
           <div>
 
-            <div className='element'
-            style={{ width: "calc(40% - 10px)" }}>
-            <Card
+            <div className='element'>
+            <Card style={{padding:"10px"}}
             actions={[
             
             <EditOutlined key="edit" onClick={handleClick1}/>,
@@ -257,7 +256,11 @@ function Schedule() {
             ]}
             >
             <Meta
-            title="Recycable"
+            title={
+                    <span>
+                      <span className="circle green-circle" /> Recycable
+                    </span>
+                  }
             description="This is the description"
 
             />
@@ -309,14 +312,18 @@ function Schedule() {
               
               
             </div>
-            <div className="element" style={{ width: "calc(40% - 10px)"}}>
-            <Card
+            <div className="element">
+            <Card style={{padding:"10px"}}
             actions={[
             <EditOutlined key="edit" onClick={handleClick2}/>,
             ]}
             >
             <Meta
-            title="Burnable"
+            title={
+                    <span>
+                      <span className="circle orange-circle" /> Organic
+                    </span>
+                  }
             description="This is the description"
 
             />
@@ -348,7 +355,7 @@ function Schedule() {
                         disabled={!click2}
                         defaultValue={date['day']}
                         showSearch
-                        style={{ width: '120px', float: 'right' }}
+                        style={{ width: '150px', float: 'right' }}
                         placeholder="Select Day"
                         options={Days}
                         onChange={(value) => onChangedDay(datesB, index, value)}
@@ -366,14 +373,18 @@ function Schedule() {
               </Card>   
             </div>
 
-            <div className="element" style={{ width: "calc(40% - 10px)" }}>
-            <Card
+            <div className="element">
+            <Card style={{padding:"10px"}}
             actions={[
             <EditOutlined key="edit" onClick={handleClick3}/>,
             ]}
             >
             <Meta
-            title="Non-Burnable"
+            title={
+                    <span>
+                      <span className="circle red-circle" /> Non-Recycable
+                    </span>
+                  }
             description="This is the description"
 
             />
