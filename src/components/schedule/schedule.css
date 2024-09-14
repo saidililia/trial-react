@@ -105,6 +105,7 @@
 }
 
 .schedule .element .submit{
-  display: flex;
+  display: block;
+  margin-top: 20px;
   justify-content: center;
 }

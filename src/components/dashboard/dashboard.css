@@ -9,7 +9,25 @@
   padding: 0 20px;
   background-color: #f0f2f5;
 }
+.circle {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
 
+.green-circle {
+  background-color: green;
+}
+
+.orange-circle {
+  background-color: orange;
+}
+
+.red-circle {
+  background-color: red;
+}
 .logo h2 {
   color: white;
   margin: 0;

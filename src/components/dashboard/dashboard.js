@@ -187,35 +187,64 @@ function Dashboard() {
                         <div style={{ flex: 1, marginRight: '10px' }}>
                             <Row gutter={[26, 16]} justify="start" align="top" style={{ marginBottom: "40px" }}>
                                 <Col xs={24} sm={8} md={8} lg={8} xl={8}>
-                                    <Card>
+                                    <Card style={{ height: '170px' }}>
                                         <Meta
-                                            avatar={<TeamOutlined style={{fontSize:"25px"}}/>}
-                                            title="active users"
+                                            avatar={<TeamOutlined style={{fontSize:"25px", color:"rgb(100, 149, 237)"}}/>}
+                                            title="Active users"
                                         />
                                         <Statistic value={Users} formatter={formatter} />
                                     </Card>
                                 </Col>
                                 <Col xs={24} sm={8} md={8} lg={8} xl={8}>
-                                    <Card>
+                                    <Card style={{ height: '170px' }}>
                                     <Meta
-                                            avatar={<ScoreboardOutlinedIcon />}
-                                            title="average score"
+                                            avatar={<ScoreboardOutlinedIcon style={{fontSize:"25px", color:"rgb(100, 149, 237)"}}/>}
+                                            title="Average score"
                                         />
                                         <Statistic value={averageScore} precision={2} />
                                     </Card>
                                 </Col>
                                 <Col xs={24} sm={8} md={8} lg={8} xl={8}>
-                                    <Card>
+                                    <Card style={{ height: '170px' }}>
                                     <Meta
-                                            avatar={<DeleteOutlined style={{fontSize:"22px"}}/>}
-                                            title="total waste in kg"
+                                            avatar={<DeleteOutlined style={{fontSize:"22px", color:"rgb(100, 149, 237)"}}/>}
+                                            title="Total waste in kg"
                                         />
                                         <Statistic value={0} precision={2} />
                                     </Card>
                                 </Col>
                             </Row>
-                           
-                            <div>
+
+                            <Row gutter={[26, 16]} justify="start" align="top" style={{ marginBottom: "40px" }}>
+                                <Col xs={24} sm={8} md={8} lg={8} xl={8}>
+                                    <Card style={{ height: '170px' }}>
+                                        <Meta
+                                            avatar={<span className="circle green-circle" />}
+                                            title="Waste in kg"
+                                        />
+                                        <Statistic value={0} precision={2} />
+                                    </Card>
+                                </Col>
+                                <Col xs={24} sm={8} md={8} lg={8} xl={8}>
+                                    <Card style={{ height: '170px' }}>
+                                    <Meta
+                                            avatar={<span className="circle orange-circle" />}
+                                            title="Waste in Kg"
+                                        />
+                                        <Statistic value={0} precision={2} />
+                                    </Card>
+                                </Col>
+                                <Col xs={24} sm={8} md={8} lg={8} xl={8}>
+                                    <Card style={{ height: '170px' }}>
+                                    <Meta
+                                            avatar={<span className="circle red-circle" />}
+                                            title="Waste in kg"
+                                        />
+                                        <Statistic value={0} precision={2} />
+                                    </Card>
+                                </Col>
+                            </Row>
+                            {/* <div>
                             <Row justify="end" style={{ marginBottom: "20px" }}>
                                     <Select defaultValue="avgScore" style={{ width: 150 }} onChange={handleVariableChange}>
                                         <Option value="avgScore">Average Score</Option>
@@ -224,7 +253,7 @@ function Dashboard() {
                     
                                     <Select defaultValue="2023" style={{ width: 100 }} onChange={handleYearChange}>
                                         <Option value="2023">2024</Option>
-                                        <Option value="2024">2025</Option>
+                                        
                                     </Select>
                             </Row>
                             <Row justify="start">
@@ -242,7 +271,7 @@ function Dashboard() {
                                     </div>
                                 </Col>
                             </Row>
-                            </div>
+                            </div> */}
                             
                         </div>
                         <div style={{ width: '290px' }}>
