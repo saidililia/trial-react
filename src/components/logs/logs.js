@@ -19,7 +19,7 @@ function Logs() {
       'Authorization': `${token}`
     };
     try {
-      const response = await fetch('/Logs', { headers });
+      const response = await fetch('https://saidililia.pythonanywhere.com/Logs', { headers });
       const responseData = await response.json();
       console.log('API Response:', responseData);
   
