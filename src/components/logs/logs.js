@@ -49,6 +49,7 @@ function Logs() {
             <Card
               key={index}
               title={log.user} // Display the full name
+              extra={<p>{log.date}</p>}
               style={{ width: '100%' }}  // Ensure the card takes full width
               bodyStyle={{ padding: '10px' }}
             >
